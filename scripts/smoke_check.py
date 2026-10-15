@@ -2,13 +2,16 @@
 
 from pathlib import Path
 
+import sys
 import polars as pl
 
 
 def main():
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     # Запуск через модуль из корня проекта сохраняет обычный путь поиска пакета.
     import subprocess
-    import sys
     import json
     result = subprocess.run([sys.executable,"-m","logs_pipeline","run","--json"],capture_output=True,text=True,encoding="utf-8",check=True)
     summary = json.loads(result.stdout)

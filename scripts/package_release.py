@@ -1,5 +1,6 @@
 """Сборка воспроизводимого ZIP только из проверенных исходников по списку."""
 
+import sys
 import hashlib
 import zipfile
 
@@ -7,6 +8,9 @@ from check_public import ROOT, check
 
 
 def main() -> None:
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     files = check()
     folder = ROOT / "artifacts"
     folder.mkdir(exist_ok=True)

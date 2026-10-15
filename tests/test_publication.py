@@ -1,4 +1,7 @@
 import importlib.util
+import os
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -9,6 +12,13 @@ spec.loader.exec_module(checker)
 
 
 class PublicationTests(unittest.TestCase):
+    def test_scanner_outputs_utf8_with_legacy_console_encoding(self):
+        script = Path(__file__).resolve().parents[1] / "scripts/check_public.py"
+        result = subprocess.run([sys.executable, str(script)], capture_output=True,
+                                env={**os.environ, "PYTHONIOENCODING": "cp1252"})
+        self.assertEqual(result.returncode, 0, result.stderr.decode("utf-8"))
+        self.assertIn("Проверка публикации пройдена", result.stdout.decode("utf-8"))
+
     def test_secret_and_contact_patterns_are_rejected(self):
         candidates = ["ghp_" + "a" * 30, "test" + "@" + "example" + ".test",
                       "-----BEGIN " + "PRIVATE KEY-----", "https://user:" + "pass@" + "example.test"]
