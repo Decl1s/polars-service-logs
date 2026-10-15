@@ -1,5 +1,7 @@
 # Журналы сервисов на Polars
 
+[Релиз 0.1.0 и архив](https://github.com/Decl1s/polars-service-logs/releases/tag/v0.1.0) · [Проверки CI](https://github.com/Decl1s/polars-service-logs/actions)
+
 Учебный проект дата-инженера: синтетические JSONL-журналы превращаются в очищенные
 разделы Parquet и почасовую статистику времени ответа и HTTP-ошибок.
 Основная новая технология — Polars 2.0.0. Все объяснения и сообщения — на русском.
