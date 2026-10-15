@@ -63,7 +63,7 @@ class PipelineTests(unittest.TestCase):
         result=run(self.input,self.output)
         self.assertEqual(result["accepted_rows"],1)
         self.assertEqual(result["rejected_rows"],6)
-        quality=json.loads((self.output/"quality.json").read_text())
+        quality=json.loads((self.output/"quality.json").read_text(encoding="utf-8"))
         self.assertEqual(sum(row["rows"] for row in quality),6)
         self.assertEqual(next(row["rows"] for row in quality if row["reason"]=="duration_ms"),2)
 
@@ -177,7 +177,7 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual((first/"part-01.jsonl").read_bytes(),(second/"part-01.jsonl").read_bytes())
         result=run(first,self.output)
         self.assertEqual((result["accepted_rows"],result["duplicate_rows"],result["rejected_rows"]),(100,1,5))
-        manifest=json.loads((self.output/"manifest.json").read_text())
+        manifest=json.loads((self.output/"manifest.json").read_text(encoding="utf-8"))
         for name,digest in manifest["files"].items():
             self.assertEqual(hashlib.sha256((self.output/name).read_bytes()).hexdigest(),digest)
         with self.assertRaises(PipelineError):generate(first,rows=100)
