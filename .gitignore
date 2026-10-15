@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+workspace/
+artifacts/
+*.parquet
+*.jsonl
+*.csv
+.env*
+*.key
+*.pem
+.idea/
+.vscode/
