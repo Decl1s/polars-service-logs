@@ -1,5 +1,9 @@
 # Журналы сервисов на Polars
 
+[← Каталог моих проектов](https://github.com/Decl1s/Decl1s/blob/main/PROJECTS.md) · [С чего я начинаю](NOTES.md) · [Контракт и решения](CONCEPT.md) · [Что я проверил](VALIDATION.md)
+
+Я меняю границу медленного запроса на синтетическом наборе и сравниваю почасовую статистику.
+
 [Релиз 0.1.0 и архив](https://github.com/Decl1s/polars-service-logs/releases/tag/v0.1.0) · [Проверки CI](https://github.com/Decl1s/polars-service-logs/actions)
 
 Я разработал учебный конвейер на Polars: преобразую синтетические JSONL-журналы
